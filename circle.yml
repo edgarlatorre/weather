@@ -1,0 +1,13 @@
+machine:
+  ruby:
+    version: ruby-2.3.0
+
+test:
+  post:
+    - bundle exec rake test
+
+deployment:
+  production:
+    branch: master
+    commands:
+      - bundle exec cap production deploy
