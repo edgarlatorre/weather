@@ -1,17 +1,18 @@
-working_directory "${ENV['CURRENT_APP_DIR]}"
-
-pid "${ENV['APP_DIR]}/pids/unicorn.pid"
+app_path = File.expand_path(File.dirname(__FILE__) + '/..')
 
 # Path to logs
-stderr_path "${ENV['APP_DIR]}/log/unicorn.log"
-stdout_path "${ENV['APP_DIR]}/log/unicorn.log"
+stderr_path "#{app_path}/log/unicorn.log"
+stdout_path "#{app_path}/log/unicorn.log"
 
 # Unicorn socket
-listen "/tmp/unicorn.[app name].sock"
-listen "/tmp/unicorn.myapp.sock"
+listen "#{app_path}/tmp/unicorn.sock", backlog: 64
 
 # Number of processes
 worker_processes 1
 
+working_directory app_path
+
+pid "#{app_path}/tmp/unicorn.pid"
+
 # Time-out
-timeout 30
+timeout 300
