@@ -12,7 +12,7 @@ worker_processes 1
 
 working_directory app_path
 
-pid "#{app_path}/tmp/unicorn.pid"
+pid "/tmp/unicorn.pid"
 
 # Time-out
 timeout 300
