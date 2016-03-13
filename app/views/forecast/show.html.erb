@@ -46,15 +46,36 @@
                   <div class="modal-body">
                     <div class="row">
                       <div class="col-md-6">
-                        <p><strong>Min:</strong> <%= forecast["temp"]["min"] %>º</p>
-                        <p><strong>Max:</strong> <%= forecast["temp"]["max"] %>º</p>
-                        <p><strong>Pressure:</strong> <%= forecast["pressure"] %></p>
-                        <p><strong>Humidity:</strong> <%= forecast["humidity"] %></p>
+                        <p>
+                          <strong>Min:</strong>
+                          <%= forecast["temp"]["min"] %>º
+                        </p>
+                        <p>
+                          <strong>Max:</strong>
+                          <%= forecast["temp"]["max"] %>º
+                        </p>
+                        <p>
+                          <strong>Pressure:</strong>
+                          <%= forecast["pressure"] %>
+                        </p>
+                        <p>
+                          <strong>Humidity:</strong>
+                          <%= forecast["humidity"] %>
+                        </p>
                       </div>
                       <div class="col-md-6">
-                        <p><strong>Speed:</strong> <%= forecast["speed"] %></p>
-                        <p><strong>Direction:</strong> <%= forecast["deg"] %></p>
-                        <p><strong>Condition:</strong> <%= forecast["weather"][0]["main"] %></p>
+                        <p>
+                          <strong>Speed:</strong>
+                          <%= forecast["speed"] %>
+                        </p>
+                        <p>
+                          <strong>Direction:</strong>
+                          <%= forecast["deg"] %>
+                        </p>
+                        <p>
+                          <strong>Condition:</strong>
+                          <%= forecast["weather"][0]["main"] %>
+                        </p>
                         <p>
                           <strong>Description:</strong>
                           <%= forecast["weather"][0]["description"] %>
