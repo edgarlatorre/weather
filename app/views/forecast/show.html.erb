@@ -11,10 +11,40 @@
             <div>
               <h4><%= forecast["temp"]["day"] %>º</h4>
               <time>
-                <a href="">
+                <a data-toggle="modal"
+                  href=<%= "detail-modal-#{index}"%>
+                  data-target="<%= "#detail-modal-#{index}"%>">
+
                   <%= (Time.now + index.day).strftime("%d/%m/%Y") %>
                 </a>
               </time>
+
+              <div class="modal fade"
+                tabindex="-1" role="dialog"
+                aria-labelledby="mySmallModalLabel"
+                id="<%= "detail-modal-#{index}"%>">
+
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button"
+                        class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                      <h4 class="modal-title">
+                        <%= @city %>
+                        <%= (Time.now + index.day).strftime("%d/%m/%Y") %> - <%= forecast["temp"]["day"] %>º
+                      </h4>
+                    </div>
+                    <div class="modal-body">
+                      <p>Min: <%= forecast["temp"]["min"] %>º</p>
+                      <p>Max: <%= forecast["temp"]["max"] %>º</p>
+                      <p>Pressure: <%= forecast["temp"]["pressure"] %></p>
+                      <p>Humidity: <%= forecast["temp"]["humidity"] %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <% end %>
