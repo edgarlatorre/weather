@@ -1,0 +1,5 @@
+<%= @forecasts["city"]["name"] %>
+
+<% @forecasts["list"].each do |forecast| %>
+  <p><%= forecast["temp"]["max"] %></p>
+<% end %>
