@@ -1,10 +1,14 @@
 <div class="container">
   <h1>Welcome to Edgar's Weather Forecast</h1>
-  <p>Type the city you'd like to check</p>
+  <p class="lead">Type the city you'd like to check</p>
   <%= form_tag :show do -%>
-    <div class="form-group">
-      <input name="city" class="form-control"></input>
+    <div class="row row-form">
+      <div class="col-sm-8">
+        <input name="city" class="form-control input-lg"></input>
+      </div>
+      <div class="col-sm-2">
+        <%= submit_tag 'Find', :class => "btn btn-primary btn-find input-lg" %>
+      </div>
     </div>
-    <div><%= submit_tag 'Save', :class => "btn btn-default" %></div>
   <% end -%>
 </div>

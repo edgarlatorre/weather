@@ -2,64 +2,70 @@
   <header>
     <h2><a href="/">Edgar's Weather Forecast</a></h2>
   </header>
-  <div class="row extra-top-margin">
+  <div class="mtop-50">
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title"><%= @city %></h3>
+        <h4><%= @city %></h4>
       </div>
       <div class="panel-body">
         <% if not @forecasts.empty? %>
           <% @forecasts["list"].each_with_index do |forecast, index| %>
-          <div class="col-xs-12 col-sm-4 col-md-3">
-            <div>
-              <h4>
-                <%= forecast["temp"]["day"] %>º
-                <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
-              </h4>
-              <time>
-                <a data-toggle="modal"
-                  href=<%= "detail-modal-#{index}"%>
-                  data-target="<%= "#detail-modal-#{index}"%>">
+          <div class="col-xs-6 col-sm-4 col-md-3">
+            <time class="date">
+              <a data-toggle="modal"
+                href=<%= "detail-modal-#{index}"%>
+                data-target="<%= "#detail-modal-#{index}"%>">
 
-                  <%= (Time.now + index.day).strftime("%d/%m/%Y") %>
-                </a>
-              </time>
+                <%= (Time.now + index.day).strftime("%d/%m/%Y") %>
+              </a>
+            </time>
+            <h4>
+              <%= forecast["temp"]["day"] %>º
+              <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
+            </h4>
 
-              <div class="modal fade"
-                tabindex="-1" role="dialog"
-                aria-labelledby="mySmallModalLabel"
-                id="<%= "detail-modal-#{index}"%>">
+            <div class="modal fade"
+              tabindex="-1" role="dialog"
+              aria-labelledby="mySmallModalLabel"
+              id="<%= "detail-modal-#{index}"%>">
 
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <button type="button"
-                        class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                      <h4 class="modal-title">
-                        <%= @city %>
-                        <%= (Time.now + index.day).strftime("%d/%m/%Y") %> - Temperature: <%= forecast["temp"]["day"] %>º
-                        <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
-                      </h4>
-                    </div>
-                    <div class="modal-body">
-                      <p>Min: <%= forecast["temp"]["min"] %>º</p>
-                      <p>Max: <%= forecast["temp"]["max"] %>º</p>
-                      <p>Pressure: <%= forecast["pressure"] %></p>
-                      <p>Humidity: <%= forecast["humidity"] %></p>
-                      <p>Speed: <%= forecast["speed"] %></p>
-                      <p>Direction: <%= forecast["deg"] %></p>
-                      <p>Condition: <%= forecast["weather"][0]["main"] %></p>
-                      <p>
-                        Description:
-                        <%= forecast["weather"][0]["description"] %>
-                      </p>
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button"
+                      class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">
+                      <%= (Time.now + index.day).strftime("%d/%m/%Y") %><br>
+                      <%= @city %> -
+                      <%= forecast["temp"]["day"] %>º
+                      <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
+                    </h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <p><strong>Min:</strong> <%= forecast["temp"]["min"] %>º</p>
+                        <p><strong>Max:</strong> <%= forecast["temp"]["max"] %>º</p>
+                        <p><strong>Pressure:</strong> <%= forecast["pressure"] %></p>
+                        <p><strong>Humidity:</strong> <%= forecast["humidity"] %></p>
+                      </div>
+                      <div class="col-md-6">
+                        <p><strong>Speed:</strong> <%= forecast["speed"] %></p>
+                        <p><strong>Direction:</strong> <%= forecast["deg"] %></p>
+                        <p><strong>Condition:</strong> <%= forecast["weather"][0]["main"] %></p>
+                        <p>
+                          <strong>Description:</strong>
+                          <%= forecast["weather"][0]["description"] %>
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            <hr>
           </div>
           <% end %>
         <% else %>
