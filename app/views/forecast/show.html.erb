@@ -1,9 +1,27 @@
-<% if not @forecasts.empty? %>
-  <%= @forecasts["city"]["name"] %>
-
-  <% @forecasts["list"].each do |forecast| %>
-    <p><%= forecast["temp"]["max"] %></p>
-  <% end %>
-<% else %>
-  <p>Sorry we didn't find a forecast.</p>
-<% end %>
+<div class="container">
+  <div class="row extra-top-margin">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @city %></h3>
+      </div>
+      <div class="panel-body">
+        <% if not @forecasts.empty? %>
+          <% @forecasts["list"].each_with_index do |forecast, index| %>
+          <div class="col-xs-12 col-sm-4 col-md-3">
+            <div>
+              <h4><%= forecast["temp"]["day"] %>º</h4>
+              <time>
+                <a href="">
+                  <%= (Time.now + index.day).strftime("%d/%m/%Y") %>
+                </a>
+              </time>
+            </div>
+          </div>
+          <% end %>
+        <% else %>
+          <p>Sorry we didn't find a forecast.</p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
