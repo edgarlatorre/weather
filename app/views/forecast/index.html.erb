@@ -4,7 +4,9 @@
   <%= form_tag :show do -%>
     <div class="row row-form">
       <div class="col-sm-8">
-        <input name="city" class="form-control input-lg"></input>
+        <input name="city"
+          class="form-control input-lg"
+          required></input>
       </div>
       <div class="col-sm-2">
         <%= submit_tag 'Find', :class => "btn btn-primary btn-find input-lg" %>
