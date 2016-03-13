@@ -1,5 +1,9 @@
-<%= @forecasts["city"]["name"] %>
+<% if not @forecasts.empty? %>
+  <%= @forecasts["city"]["name"] %>
 
-<% @forecasts["list"].each do |forecast| %>
-  <p><%= forecast["temp"]["max"] %></p>
+  <% @forecasts["list"].each do |forecast| %>
+    <p><%= forecast["temp"]["max"] %></p>
+  <% end %>
+<% else %>
+  <p>Sorry we didn't find a forecast.</p>
 <% end %>

@@ -12,8 +12,8 @@ class ForecastControllerTest < ActionController::TestCase
   end
 
   test "#show should get show" do
-    # post :show, {}
-    # assert_response :success
+    post :show, {}
+    assert_response :success
   end
 
   test "#find should redirect" do
