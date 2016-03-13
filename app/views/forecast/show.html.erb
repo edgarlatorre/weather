@@ -9,7 +9,10 @@
           <% @forecasts["list"].each_with_index do |forecast, index| %>
           <div class="col-xs-12 col-sm-4 col-md-3">
             <div>
-              <h4><%= forecast["temp"]["day"] %>º</h4>
+              <h4>
+                <%= forecast["temp"]["day"] %>º
+                <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
+              </h4>
               <time>
                 <a data-toggle="modal"
                   href=<%= "detail-modal-#{index}"%>
@@ -33,14 +36,22 @@
                       </button>
                       <h4 class="modal-title">
                         <%= @city %>
-                        <%= (Time.now + index.day).strftime("%d/%m/%Y") %> - <%= forecast["temp"]["day"] %>º
+                        <%= (Time.now + index.day).strftime("%d/%m/%Y") %> - Temperature: <%= forecast["temp"]["day"] %>º
+                        <img src="<%= "http://openweathermap.org/img/w/#{forecast['weather'][0]['icon']}.png" %>">
                       </h4>
                     </div>
                     <div class="modal-body">
                       <p>Min: <%= forecast["temp"]["min"] %>º</p>
                       <p>Max: <%= forecast["temp"]["max"] %>º</p>
-                      <p>Pressure: <%= forecast["temp"]["pressure"] %></p>
-                      <p>Humidity: <%= forecast["temp"]["humidity"] %></p>
+                      <p>Pressure: <%= forecast["pressure"] %></p>
+                      <p>Humidity: <%= forecast["humidity"] %></p>
+                      <p>Speed: <%= forecast["speed"] %></p>
+                      <p>Direction: <%= forecast["deg"] %></p>
+                      <p>Condition: <%= forecast["weather"][0]["main"] %></p>
+                      <p>
+                        Description:
+                        <%= forecast["weather"][0]["description"] %>
+                      </p>
                     </div>
                   </div>
                 </div>
