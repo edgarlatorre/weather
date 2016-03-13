@@ -3,6 +3,7 @@ class ForecastController < ApplicationController
   end
 
   def show
+    @forecasts = Forecast.find_by_name(params[:city])
   end
 
   def find
