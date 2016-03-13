@@ -9,24 +9,24 @@ set :repo_url, 'git@github.com:edgarlatorre/weather.git'
 
 # Default deploy_to directory is /var/www/my_app_name
 set :deploy_to, '/home/deploy/weather'
-set :default_environment, {
-  'PATH' => "$GEM_HOME/bin:$PATH"
-}
+
 # Default value for :scm is :git
 set :scm, :git
 
 namespace :deploy do
+  task :build do
+    on roles(:web) do
+      bundle_command = "bundle install --deployment --path=#{deploy_to}/bundle"
+      execute "cd #{deploy_to}/current && #{bundle_command}"
+      execute "cd #{deploy_to}/current && rake assets:precompile "
+    end
+  end
   task :restart do
     on roles(:web) do
       execute "cd #{deploy_to}/current && sh restart.sh"
     end
   end
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
+
+  after :finishing, 'deploy:build'
+  after :finishing, 'deploy:restart'
 end
