@@ -16,7 +16,7 @@ set :scm, :git
 namespace :deploy do
   task :build do
     on roles(:web) do
-      bundle_command = "bundle install --deployment --path=#{deploy_to}/bundle"
+      bundle_command = "bundle install --deployment --binstubs --path=#{deploy_to}/bundle"
       execute "cd #{deploy_to}/current && #{bundle_command}"
       execute "cd #{deploy_to}/current && rake assets:precompile "
     end
